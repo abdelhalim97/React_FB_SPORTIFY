@@ -1,6 +1,6 @@
 import "./index.css"
 import { BrowserRouter,Routes,Route } from "react-router-dom";
-import {Login,ErrorPage,Home} from "./pages"
+import {Login,ErrorPage,Dashboard} from "./pages"
 import {auth} from './auth/firebase'
 function App() {
   return (
@@ -11,14 +11,12 @@ function App() {
         <Link to="/">home</Link>
       </nav>
        */}
+       {auth&&<Dashboard/>}
         <Routes>
-        {auth?
-          <Route path="/" element={<Home></Home>}></Route>
-        :
-          <Route path="/" element={<Login></Login>}></Route>}
+        {!auth&&<Route path="/" element={<Login></Login>}></Route>}
           <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
         </Routes>
-        {/* footer */}
+        <footer>footer</footer>
       </BrowserRouter>
     </>
   );

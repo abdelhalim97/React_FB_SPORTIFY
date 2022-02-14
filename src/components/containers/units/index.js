@@ -1,4 +1,4 @@
 import {ReButton} from "./re-button"
 import {ReInput} from "./re-input"
-
-export{ReButton,ReInput}
+import {IconButton} from './icon-button'
+export{ReButton,ReInput,IconButton}
