@@ -16,7 +16,9 @@ const firebaseConfig = initializeApp({
 export const auth = getAuth(firebaseConfig);
 onAuthStateChanged(auth,user=>{
   if(user!==null){
-console.log(user)
+// console.log(user)
+console.log('connected')
+
   }
   else{
     console.log('u r not logged in')

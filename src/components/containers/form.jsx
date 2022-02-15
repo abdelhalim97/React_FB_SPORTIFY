@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {ReButton,ReInput} from "./units"
-import { Container, Typography } from '@material-ui/core'
+import { Button, Container, Typography } from '@material-ui/core'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../../auth/firebase'
+import { Link } from 'react-router-dom'
 export const Form = () => {
   const [form, setForm] = useState('login')
   // const [name, setName] = useState('')
@@ -64,7 +65,7 @@ export const Form = () => {
     setFormData({...formData,...{[key]:value}})
   }
   const handleChangeLogIn=(value,key)=>{
-    setFormDataLogIn({...formData,...{[key]:value}})
+    setFormDataLogIn({...formDataLogIn,...{[key]:value}})
   }
   const signUp=async()=>{
     try {
@@ -98,14 +99,14 @@ export const Form = () => {
             {form === 'login'&&<>
               <div className='mx-auto w-5/6 my-2'>
                 {dataLogin.map(data=>
-                <ReInput key={data.id} value={formDataLogIn[data.id]} onChange={(e)=>{handleChangeLogIn(e.target.value,data.id)}} label={data.label} types={data.types} styles="w-full my-1"></ReInput>
+                <ReInput key={data.id} value={formDataLogIn[data.id]} onChange={(e)=>{handleChangeLogIn(e.target.value,data.id)}} label={data.label} types={data.types} styles="w-full my-1"/>
                 )}
               </div>
               <div className='flex justify-center'>
-                <ReButton variant='contained' title='Login'fnc={()=>{logIn()}} styles='text-third bg-base my-3 rounded-2xl'></ReButton>
+                <Button variant='contained' onClick={()=>{logIn()}} className='text-third bg-base my-3 rounded-2xl'>Login</Button>
               </div>
               <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Don't have an account?
-              <ReButton title='Sign Up' variant='text' styles='my-3 text-base text-xs' fnc={()=>{setForm('signUp')}}></ReButton>
+              <Button variant='text' className='my-3 text-base text-xs' onClick={()=>{setForm('signUp')}}>Sign Up</Button>
               </Typography>
             </>}
             {form === 'signUp'&&<>
@@ -116,7 +117,7 @@ export const Form = () => {
                   )}
                 </div>
                 <div className='flex justify-center'>
-                  <ReButton variant='contained' title='SignUp' styles='text-third bg-base my-3 rounded-2xl' fnc={()=>{signUp()}}/>
+                  <Button variant='contained' className='text-third bg-base my-3 rounded-2xl' onClick={()=>{signUp()}}>SignUp</Button>
                 </div>
               </form>
               <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Already have an account?

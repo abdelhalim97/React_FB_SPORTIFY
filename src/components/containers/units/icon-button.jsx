@@ -6,7 +6,7 @@ export const IconButton = (props) => {
   return (
     <>
       <Link to={props.link} className='w-full flex justify-center'>
-        <Button variant='text' className='rounded-md w-4/5'>
+        <Button variant='text' className='rounded-md w-4/5' onClick={props.fnc}>
           <FontAwesomeIcon icon={props.icon} className='mr-2'/>{props.title}
         </Button>
       </Link>
