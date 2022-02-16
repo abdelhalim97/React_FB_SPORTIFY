@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
 import {ReButton,ReInput} from "./units"
 import { Button, Container, Typography } from '@material-ui/core'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../../auth/firebase'
-import { Link } from 'react-router-dom'
 export const Form = () => {
   const [form, setForm] = useState('login')
-  // const [name, setName] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [number, setNumber] = useState(null)
-  // const [pass, setPass] = useState('')
   const [formData, setFormData] = useState({})
   const [formDataLogIn, setFormDataLogIn] = useState({})
-
   const dataButtons =[
     {
       id:0,
@@ -53,7 +47,7 @@ export const Form = () => {
     {
       id:'number',
       label:"Phone Number",
-      types:"number"
+      types:"text"
     },
     {
       id:'password',
@@ -73,8 +67,9 @@ export const Form = () => {
     const {user}=await createUserWithEmailAndPassword(auth,email,password)
     await updateProfile(user,{
       'displayName':name,
-      'phoneNumber':number
+      // 'phoneNumber':number
     })
+    sendEmailVerification(user)
     } catch (error) {
       console.log(error)
     }

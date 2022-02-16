@@ -22,7 +22,6 @@ onAuthStateChanged(auth,user=>{
           {!first &&
             (<Route path="/" element={<Login/>}></Route>)
           }
-          {/* <Route path="*" element={<ErrorPage/>}></Route> */}
         </Routes>
         {/* <footer>footer</footer> */}
       </BrowserRouter>
