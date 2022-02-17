@@ -131,7 +131,7 @@ export const Form = () => {
                 </div>
                 )}
               <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Don't have an account?
-              <Button variant='text' className='my-3 text-base text-xs' onClick={()=>{setForm('signUp')}}>Sign Up</Button>
+              <Button variant='text' className=' text-base text-xs' onClick={()=>{setForm('signUp')}}>Sign Up</Button>
               </Typography>
             </>}
             {form === 'signUp'&&<>
