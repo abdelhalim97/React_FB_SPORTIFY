@@ -72,11 +72,6 @@ export const Form = () => {
       types:"email"
     },
     {
-      id:'number',
-      label:"Phone Number",
-      types:"text"
-    },
-    {
       id:'password',
       label:"Password",
       types:"password"
@@ -90,11 +85,10 @@ export const Form = () => {
   }
   const signUp=async()=>{
     try {
-      const {name,email,number,password}=formData
+      const {name,email,password}=formData
     const {user}=await createUserWithEmailAndPassword(auth,email,password)
     await updateProfile(user,{
       'displayName':name,
-      // 'phoneNumber':number
     })
     sendEmailVerification(user)
     } catch (error) {
@@ -155,7 +149,6 @@ export const Form = () => {
                   <TextField variant="standard" value={forgetPass} onChange={(e)=>{setForgetPass(e.target.value)}} label="Forgot Password" className="w-full my-1 "/>
                 </div>
               {forgetPassStat===0?<></>:forgetPassStat===1?<Typography className='text-center my-2' variant='body2' >Email has been sent</Typography>:<Typography className='text-center my-2' variant='body2'>something went wrong</Typography>}
-
                 <div className='flex justify-center'>
                   <Button variant='contained' className='text-third bg-base my-3 rounded-2xl' onClick={()=>{resetPassword()}}>Reset Password</Button>
                 </div>

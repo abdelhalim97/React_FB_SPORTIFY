@@ -1,2 +1,4 @@
 import { Form } from "./form";
-export{Form}
+import { OurModal } from "./our-modal";
+
+export{Form,OurModal}

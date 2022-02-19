@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
-import { IconButton } from '../components/containers/units'
+import { LinkIconButton } from '../components/containers/units'
 import { faFutbol,faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
@@ -40,7 +40,7 @@ export const Dashboard = () => {
             <Grid item xs={4} sm={2}  className='bg-sec relative' style={{ height:'100vh' }}>
                 <Typography variant='h6' className='text-third text-center'>SPORTIFY</Typography>
                 {buttonsData.map(data=>
-                    <IconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
+                    <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
             </Grid>
                 <Grid item xs={8} sm={10} >
