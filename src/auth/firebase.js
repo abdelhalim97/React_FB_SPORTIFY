@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {getAuth,onAuthStateChanged} from "firebase/auth";
+import {getDatabase} from "firebase/database";
 // import {getFirestore} from "@firebase/firestore"
 
 // Your web app's Firebase configuration
@@ -14,6 +15,7 @@ const firebaseConfig = initializeApp({
   appId: process.env.REACT_APP_APP_ID
 });
 export const auth = getAuth(firebaseConfig);
+export const db = getDatabase(firebaseConfig)
 onAuthStateChanged(auth,user=>{
   if(user!==null){
 // console.log(user)

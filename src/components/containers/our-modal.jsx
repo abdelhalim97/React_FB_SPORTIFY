@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { Box, Button, Modal, TextField, Typography } from '@material-ui/core';
-import { MapBox, IconButton, TypographyIcon } from './units';
+import { Box,  Modal, TextField, Typography } from '@material-ui/core';
+import { MapBox, IconButton, TypographyIcon, ReButton } from './units';
 import { faAdd, faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
+import {db,auth} from '../../auth/firebase'
+import { getDatabase, ref, set } from "firebase/database";
+
 export const OurModal = () => {
   const [lng, setLng] = useState(10.612);
 const [lat, setLat] = useState(35.83);
@@ -11,7 +14,6 @@ const [lat, setLat] = useState(35.83);
   const handleClose = () => setOpen(false);
   const handleForm=(key,value)=>{
     setform({...form,...{[key]:value}})
-    console.log(form)
   }
   const style = {
     position: 'absolute',
@@ -21,8 +23,13 @@ const [lat, setLat] = useState(35.83);
     boxShadow: 24,
     p: 4,
   };
-  const addStadium=()=>{
-    console.log('f')
+  const addStadium=(stadiumId,lat,lng,name,cost)=>{
+    set(ref(db,'stadiums/'+stadiumId),{
+      name,
+      lat,
+      lng,
+      cost
+    })
   }
   const fildsData =[
     {
@@ -46,7 +53,7 @@ const [lat, setLat] = useState(35.83);
   ]
   return (
     <>
-      <Button onClick={handleOpen}>Add a Stadium</Button>
+      <ReButton text='Add a Stadium' fnc={handleOpen} />
       <Modal
         open={open}
         onClose={handleClose}
@@ -58,9 +65,10 @@ const [lat, setLat] = useState(35.83);
           </Typography>
           <div>
             <MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} />
-            <div className='flex justify-around mt-3'>
+            <Box mt={9}></Box>
+            <div className='flex justify-around '>
               {positionData.map(data=>
-                  <TypographyIcon key={data.id} variant='body1' icon={faLocationCrosshairs}  text={data.label} styles='text-center text-gray-500' />
+                <TypographyIcon key={data.id} variant='body1' icon={faLocationCrosshairs}  text={data.label} styles='text-center text-gray-500' />
               )}
             </div>
             {fildsData.map(data=>
@@ -70,7 +78,7 @@ const [lat, setLat] = useState(35.83);
             </div>
             )}
             <div className='flex justify-center'>
-              <IconButton title='add Stadium' icon={faAdd} fnc={addStadium} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
+              <IconButton title='add Stadium' icon={faAdd} fnc={()=>{addStadium(auth.currentUser.uid,lat,lng,form.name,form.cost)}} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
             </div>
           </div>
         </Box>

@@ -4,7 +4,7 @@ import {Button} from "@material-ui/core"
 export const ReButton = (props) => {
   return (
     <>
-      <Button variant={props.variant} className={props.styles} onClick={props.fnc}>{props.title}</Button>
+      <Button className='text-third bg-base rounded-2xl' onClick={props.fnc}>{props.text}</Button>
     </>
   )
 }
