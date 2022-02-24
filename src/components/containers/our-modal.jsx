@@ -64,7 +64,7 @@ const [lat, setLat] = useState(35.83);
             Add a new Stadium
           </Typography>
           <div>
-            <MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} />
+            <MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} initialZ={12}/>
             <Box mt={9}></Box>
             <div className='flex justify-around '>
               {positionData.map(data=>

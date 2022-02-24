@@ -11,20 +11,19 @@ export const Terrain = () => {
         setData([snapshot.val()])
       })
   }, [])
-  console.log(data)
-// TODO: useContext
+  // console.log(data)
+// TODO: only display our terrains
   return (
     <>
-    <div className='grid content-center h-full'>
-      <div className='w-5/6 border border-sec shadow-sm mx-auto'>
-        <div className='flex justify-end'>
-          <OurModal/>
-        </div>
-        {data?.map(d=><DisplayTerrain />)}
+      <div className='grid content-center h-full'>
+        <div className='w-5/6 border border-sec shadow-sm mx-auto'>
+          <div className='flex justify-end'>
+            <OurModal/>
+          </div>
+          {data?.map((d,i)=><DisplayTerrain key={i} name={d.name} cost={d.cost} lng={d.lng} lat={d.lat} />)}
 
+        </div>
       </div>
-    </div>
-    
     </>
   )
 }
