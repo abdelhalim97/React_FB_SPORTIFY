@@ -1,6 +1,7 @@
 import "./index.css"
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import {Login,ErrorPage,Dashboard} from "./pages"
+import { Footer } from "./components";
 import {auth} from './auth/firebase'
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
@@ -23,7 +24,7 @@ onAuthStateChanged(auth,user=>{
             (<Route path="/" element={<Login/>}></Route>)
           }
         </Routes>
-        {/* <footer>footer</footer> */}
+        <Footer/>
       </BrowserRouter>
     </>
   );

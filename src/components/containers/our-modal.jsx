@@ -3,7 +3,7 @@ import { Box,  Modal, TextField, Typography } from '@material-ui/core';
 import { MapBox, IconButton, TypographyIcon, ReButton } from './units';
 import { faAdd, faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import {db,auth} from '../../auth/firebase'
-import { getDatabase, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 
 export const OurModal = () => {
   const [lng, setLng] = useState(10.612);
