@@ -6,7 +6,6 @@ import { TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 export const Home = () => {
-  console.log(auth)
   return (
     <>
     {/* FIXME: name of new user doesnt display  */}

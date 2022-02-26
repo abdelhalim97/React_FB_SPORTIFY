@@ -4,7 +4,7 @@ import  {Form} from "./containers"
 export const Background = () => {
   return (
       <>
-          <Container maxWidth="sm" >
+          <Container maxWidth="sm" style={{ height:'41vh' }}>
             <div  className='bg-base h-64 relative border-1 rounded-b-full w-full'>
               <div className='absolute w-full '>
                 <div className=' text-third text-3xl w-full text-center'>Sportify</div>

@@ -37,20 +37,20 @@ export const Dashboard = () => {
   return (
     <>
         <Grid container>
-            <Grid item xs={4} sm={2}  className='bg-sec relative' style={{ height:'100vh' }}>
+            <Grid item xs={4} sm={2}  className='bg-sec relative' style={{ height:'94vh' }}>
                 <Typography variant='h6' className='text-third text-center'>SPORTIFY</Typography>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
             </Grid>
-                <Grid item xs={8} sm={10} >
-                        <Routes>
-                            <Route path="/" element={<Home/>}></Route>
-                            {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
-                            <Route path="*" element={<ErrorPage/>}></Route>
-                        </Routes>
-                </Grid>
+            <Grid item xs={8} sm={10} >
+                    <Routes>
+                        <Route path="/" element={<Home/>}></Route>
+                        {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
+                        <Route path="*" element={<ErrorPage/>}></Route>
+                    </Routes>
             </Grid>
+        </Grid>
     </>
   )
 }

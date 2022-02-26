@@ -3,7 +3,7 @@ import { Box,  Modal, TextField, Typography } from '@material-ui/core';
 import { MapBox, IconButton, TypographyIcon, ReButton } from './units';
 import { faAdd, faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import {db,auth} from '../../auth/firebase'
-import { ref, set } from "firebase/database";
+import { push, ref, set } from "firebase/database";
 
 export const OurModal = () => {
   const [lng, setLng] = useState(10.612);
@@ -24,7 +24,9 @@ const [lat, setLat] = useState(35.83);
     p: 4,
   };
   const addStadium=(stadiumId,lat,lng,name,cost)=>{
-    set(ref(db,'stadiums/'+stadiumId),{
+    const newRef=ref(db,'stadiums')
+    const newStadiumRef=push(newRef)
+    set(newStadiumRef,{
       name,
       lat,
       lng,
