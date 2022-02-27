@@ -1,4 +1,4 @@
-import { Box, Typography } from '@material-ui/core'
+import { Box, Grid, Typography } from '@material-ui/core'
 import React, {  useState } from 'react'
 import { MapBox } from './units'
 export const DisplayTerrain = (props) => {
@@ -6,18 +6,21 @@ export const DisplayTerrain = (props) => {
   const [lng, setLng] = useState(props.lng)
   return (
     <>
-      <div className='flex justify-between'>
-        <div className='w-2/3 my-3 mx-2'>
-          <MapBox lat={lat} lng={lng} setLat={setLat} setLng={setLng} initialZ={18}/>
-          <Box mt={9}></Box>
+    <Grid container className=' my-4' justifyContent="space-around" >
+      <Grid  sm={9} md={7} item container justifyContent="center">
+        <Grid item xs={11}>
+        <MapBox lat={lat} lng={lng} setLat={setLat} setLng={setLng} initialZ={18}/>
+        <Box mt={9}></Box>
+        </Grid>
+      </Grid>
+      <Grid sm={9} md={4} item className='bg-gray-100  flex items-center  rounded-md'>
+        <div className='mx-auto'>
+          <Typography variant='subtitle1' className='text-center'>Stadium name: <span className='text-base font-bold'>{props.name}</span></Typography>
+          <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
         </div>
-        <div className='bg-gray-100 w-1/3 flex items-center my-3 mx-2 rounded-md'>
-          <div className='mx-auto'>
-            <Typography variant='subtitle1' className='text-center'>Stadium name: <span className='text-base font-bold'>{props.name}</span></Typography>
-            <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
-          </div>
-        </div>
-      </div>
+      </Grid>
+    </Grid>
+        
     </>
   )
 }
