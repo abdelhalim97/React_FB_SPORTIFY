@@ -4,12 +4,13 @@ import { MapBox } from './units'
 export const DisplayTerrain = (props) => {
   const [lat, setLat] = useState(props.lat)
   const [lng, setLng] = useState(props.lng)
+  console.log(lat)
   return (
     <>
     <Grid container className=' my-4' justifyContent="space-around" >
       <Grid  sm={9} md={7} item container justifyContent="center">
         <Grid item xs={11}>
-        <MapBox lat={lat} lng={lng} setLat={setLat} setLng={setLng} initialZ={18}/>
+        <MapBox lat={props.lat} lng={props.lng} setLng={setLng} setLat={setLat} initialZ={18}/>
         <Box mt={9}></Box>
         </Grid>
       </Grid>

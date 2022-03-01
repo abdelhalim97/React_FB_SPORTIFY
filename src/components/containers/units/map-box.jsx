@@ -22,6 +22,12 @@ export const MapBox = ({lng,setLng,lat,setLat,initialZ}) => {
       setZoom(map.current.getZoom().toFixed(2));
       });
       });
+      useEffect(() => {
+          map.current.flyTo({
+            center: [lng, lat],
+            speed: 0.5
+        });
+      },[lng,lat])
   return (
     <>
         <div ref={mapContainer} className="map-container" className='h-64'/>

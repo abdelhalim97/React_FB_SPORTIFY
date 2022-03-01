@@ -9,7 +9,6 @@ export const Terrain = () => {
     const [pageNumber, setPageNumber] = useState(0)
     const dataPerPage=1
     const pagesVisited=dataPerPage*pageNumber
-
     useEffect(() => {
       onValue(ref(db,'stadiums',auth.currentUser.uid),(snapshot)=>{
         setData([])
@@ -30,7 +29,7 @@ export const Terrain = () => {
       <Container maxWidth='lg'  className='grid content-center h-full'>
         <Grid container className=' border border-sec shadow-md mx-auto rounded-md pb-2'>
           <Grid item xs={12} className='flex justify-end my-3 mr-2'>
-            <OurModal/>
+            {/* <OurModal/> */}
           </Grid>
           {/* {data!==[]&&displayData} */}
           <Grid item xs={12}>
