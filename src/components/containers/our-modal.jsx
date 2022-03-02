@@ -23,11 +23,12 @@ const [lat, setLat] = useState(35.83);
     boxShadow: 24,
     p: 4,
   };
-  // FIXME: modal doesnt close when we add new row to db
   const addStadium=(userId,lat,lng,name,cost)=>{
-    const newRef=ref(db,'stadiums',userId)
+    const newRef=ref(db,'stadiums'+userId)
     const newStadiumRef=push(newRef)
+    const newStadiumKey=newStadiumRef.key
     set(newStadiumRef,{
+      uid:newStadiumKey,
       name,
       lat,
       lng,

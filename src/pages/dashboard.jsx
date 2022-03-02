@@ -44,11 +44,11 @@ export const Dashboard = () => {
                 )}
             </Grid>
             <Grid item xs={9} sm={10} >
-                    <Routes>
-                        <Route path="/" element={<Home/>}></Route>
-                        {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
-                        <Route path="*" element={<ErrorPage/>}></Route>
-                    </Routes>
+                <Routes>
+                    <Route path="/" element={<Home/>}></Route>
+                    {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
+                    <Route path="*" element={<ErrorPage/>}></Route>
+                </Routes>
             </Grid>
         </Grid>
     </>
