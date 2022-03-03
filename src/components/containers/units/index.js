@@ -5,4 +5,6 @@ import {TypographyIcon} from './typography-icon'
 import {IconButton} from './icon-button'
 import {MapBox} from './map-box'
 import {MapBoxFlyTo} from './map-box-fly-to'
-export{ReButton,ReInput,LinkIconButton,TypographyIcon,IconButton,MapBox,MapBoxFlyTo}
+import {IconButtonNormal} from './icon-button-nrml'
+
+export{ReButton,ReInput,LinkIconButton,TypographyIcon,IconButton,MapBox,MapBoxFlyTo,IconButtonNormal}
