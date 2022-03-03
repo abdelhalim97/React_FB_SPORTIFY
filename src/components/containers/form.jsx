@@ -86,11 +86,11 @@ export const Form = () => {
   const signUp=async()=>{
     try {
       const {name,email,password}=formData
-    const {user}=await createUserWithEmailAndPassword(auth,email,password)
-    await updateProfile(user,{
-      'displayName':name,
-    })
-    sendEmailVerification(user)
+      const {user}=await createUserWithEmailAndPassword(auth,email,password)
+      await updateProfile(user,{
+        'displayName':name,
+      })
+      await sendEmailVerification(user)
     } catch (error) {
       console.log(error)
     }
@@ -140,7 +140,7 @@ export const Form = () => {
                 </div>
               </form>
               <Typography variant='subtitle2' className='my-3 text-sec text-center text-sm'>Already have an account?
-              <Button variant='text' className='my-3 text-base text-xs' onClick={()=>{setForm('login')}}>LogIn</Button>
+                <Button variant='text' className='my-3 text-base text-xs' onClick={()=>{setForm('login')}}>LogIn</Button>
               </Typography>
             </>}
             {form === 'forgotPassword'&&<>

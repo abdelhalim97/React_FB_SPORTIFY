@@ -13,6 +13,7 @@ export const Dashboard = () => {
     const handleLogout=async()=>{
         await signOut(auth)
     }
+    // TODO: add route displaying all elements 
     const buttonsData=[
         {
             id:0,
@@ -27,7 +28,7 @@ export const Dashboard = () => {
             link:'./terrain',
         },
         {
-            id:2,
+            id:3,
             title:'Logout',
             icon:faRightFromBracket,
             link:'./',
