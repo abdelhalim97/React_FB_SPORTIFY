@@ -31,8 +31,10 @@ export const DisplayTerrain = (props) => {
         <Grid sm={9} md={7} item container justifyContent="center">
           <Grid item xs={11}>
             {!update?
-              <MapBoxFlyTo lat={props.lat} lng={props.lng} setLng={setLng} setLat={setLat} initialZ={16}/>
-              :<MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} initialZ={12}/>}
+              <MapBoxFlyTo lat={props.lat} lng={props.lng} initialZ={16}/>
+              :<>
+              <MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} initialZ={16}/>
+              </>}
             <Box mt={9}></Box>
           </Grid>
         </Grid>

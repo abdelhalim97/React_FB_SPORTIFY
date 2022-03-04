@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export const IconButtonNormal = (props) => {
   return (
     <>
-      <button className='rounded-md' onClick={props.fnc} className={props.styles}>
+      <button onClick={props.fnc} className={props.styles}>
         <FontAwesomeIcon icon={props.icon} className='mr-2'/>{props.title}
       </button>
     </>

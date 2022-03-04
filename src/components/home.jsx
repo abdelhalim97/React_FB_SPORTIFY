@@ -13,7 +13,6 @@ export const Home = () => {
     setUser(user)
     if (initializing) setInitializing(false);
   })
-  console.log(user)
   return (
     <>
      {initializing?  null:

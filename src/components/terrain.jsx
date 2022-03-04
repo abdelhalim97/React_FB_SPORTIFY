@@ -34,8 +34,8 @@ export const Terrain = () => {
           </Grid>
           <Grid item xs={12}>
             {data.length>0 &&
-            data?.slice(pagesVisited,pagesVisited+dataPerPage).map(d=>
-            <DisplayTerrain key={d.uid} name={d.name} cost={d.cost} lng={d.lng} lat={d.lat} uid={d.uid} />
+            data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
+            <DisplayTerrain key={d.i} name={d.name} cost={d.cost} lng={d.lng} lat={d.lat} uid={d.uid} />
             )}
             {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
           </Grid>
