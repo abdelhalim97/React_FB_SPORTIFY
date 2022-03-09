@@ -33,7 +33,7 @@ export const DisplayTerrain = (props) => {
             {!update?
               <MapBoxFlyTo lat={props.lat} lng={props.lng} initialZ={16}/>
               :<>
-              <MapBox lng={lng} setLng={setLng} lat={lat} setLat={setLat} initialZ={16}/>
+              <MapBox lng={props.lng} setLng={setLng} lat={props.lat} setLat={setLat} initialZ={16}/>
               </>}
             <Box mt={9}></Box>
           </Grid>
