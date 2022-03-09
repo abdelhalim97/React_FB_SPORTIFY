@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 export const MapBoxFlyTo = ({lng,lat,initialZ}) => {
-    const [zoom, setZoom] = useState(initialZ);
     mapboxgl.accessToken = process.env.REACT_APP_MAP;
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -17,13 +16,13 @@ export const MapBoxFlyTo = ({lng,lat,initialZ}) => {
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [lng,lat],
-        zoom: zoom 
+        zoom: initialZ 
         });
     }
-    },[lng,lat]);
+    },[lng,lat,initialZ]);
   return (
     <>
-        <div ref={mapContainer} className="map-container" className='h-64'/>
+        <div ref={mapContainer} className="map-container h-64"/>
     </>
   )
 }

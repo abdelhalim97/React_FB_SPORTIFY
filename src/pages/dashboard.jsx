@@ -1,10 +1,10 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import { LinkIconButton } from '../components/containers/units'
-import { faFutbol,faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
-import { Home, Terrain } from '../components';
+import { Home, Terrain, AllTerrains } from '../components';
 import { signOut } from 'firebase/auth'
 import { auth } from '../auth/firebase'
 import { ErrorPage } from '.'
@@ -23,9 +23,15 @@ export const Dashboard = () => {
         },
         {
             id:1,
-            title:'Terrain',
+            title:'My Stadiums',
             icon:faFutbol,
             link:'./terrain',
+        },
+        {
+            id:2,
+            title:'All Stadiums',
+            icon:faEarthAfrica,
+            link:'./all-stadiums',
         },
         {
             id:3,
@@ -48,6 +54,7 @@ export const Dashboard = () => {
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
                     {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
+                    {auth.currentUser.emailVerified&&<Route path="/all-stadiums" element={<AllTerrains/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
             </Grid>

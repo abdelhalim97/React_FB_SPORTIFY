@@ -17,7 +17,7 @@ export const Footer = () => {
                 </a>
             </div>
             <div className="text-third text-md text-center font-bold">Made by Sportify Team</div>
-            <a href="/"><img className="w-14 mr-4" resize="cover"  src="https://www.polytecsousse.tn/wp-content/uploads/2020/09/logo-polytechnique-blanc.png"/></a>
+            <a href="/"><img className="w-14 mr-4" resize="cover" alt='polytechniqueLogo' src="https://www.polytecsousse.tn/wp-content/uploads/2020/09/logo-polytechnique-blanc.png"/></a>
         </div>
     </>
   )

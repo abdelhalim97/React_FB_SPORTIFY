@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Box,  Modal, TextField, Typography } from '@material-ui/core';
-import { MapBox, IconButton, TypographyIcon, ReButton } from './units';
+import { Box,  Button,  Modal, TextField, Typography } from '@material-ui/core';
+import { MapBox, IconButton, TypographyIcon } from './units';
 import { faAdd, faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import {db,auth} from '../../auth/firebase'
 import { push, ref, set } from "firebase/database";
@@ -58,7 +58,7 @@ const [lat, setLat] = useState(35.83);
   ]
   return (
     <>
-      <ReButton text='Add a Stadium' fnc={handleOpen} />
+      <Button onClick={handleOpen} className='text-third bg-base rounded-2xl'>Add a Stadium</Button>
       <Modal
         open={open}
         onClose={handleClose}
