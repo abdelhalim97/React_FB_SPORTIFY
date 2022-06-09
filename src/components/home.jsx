@@ -17,9 +17,9 @@ export const Home = () => {
     <>
      {initializing?  null:
      <div className='bg-base h-2/5'>
-     {!user.emailVerified&&
+     {/* {!user.emailVerified&&
        <TypographyIcon styles='text-red-800 text-center' icon={faTriangleExclamation} variant='h6' text={`please verify your email ${user.email}`}/>
-     }
+     } */}
      <Container maxWidth='lg' className='py-5'>
        <Grid item md={3}>
          <img src={img} className='rounded-full bg-third mx-auto h-16 w-16' alt='avatar'/>

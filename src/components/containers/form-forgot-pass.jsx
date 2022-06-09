@@ -4,13 +4,17 @@ import React from 'react'
 import { auth } from '../../auth/firebase'
 
 export const FormForgotPass = ({setForgetPassStat,forgetPassStat,setForgetPass,forgetPass,setForm}) => {
+            // await confirmPasswordReset('user@example.com', code)
+    
     const resetPassword=async()=>{
-        try {
-            await sendPasswordResetEmail(auth,forgetPass)
+        await sendPasswordResetEmail(auth,forgetPass)
+        .then(() => {
             setForgetPassStat(1)
-        } catch (error) {
-            setForgetPassStat(2)
-        }
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
       }
   return (
     <>

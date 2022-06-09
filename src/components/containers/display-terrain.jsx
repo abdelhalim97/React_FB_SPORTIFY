@@ -11,18 +11,19 @@ export const DisplayTerrain = (props) => {
   const [name, setName] = useState(props.name)
   const [cost, setCost] = useState(props.cost)
   const updateStadium =()=>{
-    const reff=ref(db,'stadiums'+auth.currentUser.uid+'/'+props.uid)
+    const reff=ref(db,'stadiums'+'/'+props.uid)
     set(reff, 
       {name,
       cost:parseFloat(cost),
       uid:props.uid,
       lng:lng,
       lat:lat,
+      userId:auth.currentUser.uid,
     }
     );
   }
   const deleteStadium =()=>{
-    const redDB=ref(db,'stadiums'+auth.currentUser.uid+'/'+props.uid)
+    const redDB=ref(db,'stadiums'+'/'+props.uid)
     remove(redDB)
   }
   return (

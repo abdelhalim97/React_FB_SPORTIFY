@@ -53,8 +53,10 @@ export const Dashboard = () => {
             <Grid item xs={9} sm={10} >
                 <Routes>
                     <Route path="/" element={<Home/>}></Route>
-                    {auth.currentUser.emailVerified&&<Route path="/terrain" element={<Terrain/>}></Route>}
-                    {auth.currentUser.emailVerified&&<Route path="/all-stadiums" element={<AllTerrains/>}></Route>}
+                    {/* auth.currentUser.emailVerified&& */}
+                    {<Route path="/terrain" element={<Terrain/>}></Route>}
+                    {/* auth.currentUser.emailVerified&& */}
+                    {<Route path="/all-stadiums" element={<AllTerrains/>}></Route>}
                     <Route path="*" element={<ErrorPage/>}></Route>
                 </Routes>
             </Grid>

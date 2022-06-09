@@ -12,12 +12,15 @@ export const Terrain = () => {
     const dataPerPage=1
     const pagesVisited=dataPerPage*pageNumber
     useEffect(() => {
-      onValue(ref(db,'stadiums'+auth.currentUser.uid),(snapshot)=>{
+      onValue(ref(db,'stadiums'),(snapshot)=>{
         setData([])
         const dataLocal = snapshot.val();
         if(dataLocal!==null){
           Object.values(dataLocal).map((d)=>{
-            setData((oldArray)=>[...oldArray,d]);
+            console.log(d.userId)
+            if(d.userId===auth.currentUser.uid){
+              setData((oldArray)=>[...oldArray,d]);
+            }
             return 0
           })
         }

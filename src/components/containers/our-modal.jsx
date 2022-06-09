@@ -24,11 +24,12 @@ const [lat, setLat] = useState(35.83);
     p: 4,
   };
   const addStadium=(userId,lat,lng,name,cost)=>{
-    const newRef=ref(db,'stadiums'+userId)
+    const newRef=ref(db,'stadiums')
     const newStadiumRef=push(newRef)
     const newStadiumKey=newStadiumRef.key
     set(newStadiumRef,{
       uid:newStadiumKey,
+      userId,
       name,
       lat,
       lng,
