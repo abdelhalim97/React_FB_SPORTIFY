@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Border,Pagination,TypographyIcon } from './containers/units'
 import { DataGrid } from '@mui/x-data-grid';
@@ -17,38 +17,55 @@ export const Reservation = () => {
   }, [data,pageNumber])
   const dataReservations = useFetchReservations(rentUid)
     const columns = [
-        { field: 'Terrain name', headerName: 'Terrain name', width: 150 },
+        { field: 'cost', headerName: 'Cost', width: 150 },
         // { field: 'Client email', headerName: 'Client email', width: 130 },
         // { field: 'Client name', headerName: 'Client name', width: 130 },
-        { field: 'cost',headerName: 'Cost',width: 50,},
-        { field: 'Reservation duration',headerName: 'Reservation duration',width: 150,},
+        // { field: 'cost',headerName: 'Cost',width: 50,},
+        // { field: 'Reservation duration',headerName: 'Reservation duration',width: 150,},
       ]
     const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 }
       ];
+      // console.log(data.map(d=>d.uid===rentUid&&d.name))
   return (
-    <Border>
-      {data.length>0 &&
-        data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
-          <Grid key={i} item xs={12} style={{height:400}}>
-            <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection/>
-          </Grid>
-            )}
-      {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
-      <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} setRentUid={setRentUid} />
-    </Border>
+    <>
+      <Typography align='center' variant='h5' style={{fontWeight:'bold'}}>{data&&data.map(d=>d.uid===rentUid&&d.name)}</Typography>
+      <Border>
+        {data.length>0 && data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
+        <TableContainer key={i} component={Paper} className='mb-3'>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Cost</TableCell>
+                <TableCell align="left">Date</TableCell>
+                <TableCell align="left">Reservation from</TableCell>
+                <TableCell align="left">Reservation to</TableCell>
+                <TableCell align="left">Duration</TableCell>
+                <TableCell align="left">reserverID</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {dataReservations?.length>0&&dataReservations.map((row) => (
+                <TableRow key={row.uid} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">{row.cost}</TableCell>
+                  <TableCell align="left">{row.day}/{row.month}/{row.year}</TableCell>
+                  <TableCell align="left">{row.fromHours}:{row.fromMinutes}</TableCell>
+                  <TableCell align="left">{row.toHours}:{row.toMinutes}</TableCell>
+                  <TableCell align="left">
+                    {Math.floor((parseInt(row.toHours*60)+parseInt(row.toMinutes)-(parseInt(row.fromHours*60)+parseInt(row.fromMinutes)))/60)}:
+                    {Math.floor((parseInt(row.toHours*60)+parseInt(row.toMinutes)-(parseInt(row.fromHours*60)+parseInt(row.fromMinutes)))%60)}
+                    </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+              )}
+              {dataReservations.length===0&&
+              <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3 w-full' icon={faTriangleExclamation} text='There s no reservation yet'/>}
+        {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
+        <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} setRentUid={setRentUid} />
+      </Border>
+    </>
   )
 }
