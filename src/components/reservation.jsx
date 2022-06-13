@@ -1,19 +1,28 @@
 import { Grid } from '@mui/material'
-import React from 'react'
-import { Border } from './containers/units'
+import React, { useEffect, useState } from 'react'
+import { Border,Pagination,TypographyIcon } from './containers/units'
 import { DataGrid } from '@mui/x-data-grid';
+import useFetchStadiums from '../custom-hooks/useFetchStadiums';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import useFetchReservations from '../custom-hooks/useFetchReservations';
 
 export const Reservation = () => {
+  const data = useFetchStadiums()
+  const [rentUid, setRentUid] = useState('')
+  const [pageNumber, setPageNumber] = useState(0)
+  const dataPerPage=1
+  const pagesVisited=dataPerPage*pageNumber
+  useEffect(() => {
+    data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d)=>setRentUid(d.uid))
+  }, [data,pageNumber])
+  const dataReservations = useFetchReservations(rentUid)
     const columns = [
-        { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'firstName', headerName: 'First name', width: 130 },
-        { field: 'lastName', headerName: 'Last name', width: 130 },
-        {
-          field: 'age',
-          headerName: 'Age',
-          type: 'number',
-          width: 90,
-        },]
+        { field: 'Terrain name', headerName: 'Terrain name', width: 150 },
+        // { field: 'Client email', headerName: 'Client email', width: 130 },
+        // { field: 'Client name', headerName: 'Client name', width: 130 },
+        { field: 'cost',headerName: 'Cost',width: 50,},
+        { field: 'Reservation duration',headerName: 'Reservation duration',width: 150,},
+      ]
     const rows = [
         { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
         { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
@@ -27,15 +36,19 @@ export const Reservation = () => {
       ];
   return (
     <Border>
-        <Grid item xs={12}>
-        <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-        </Grid>
+      {data.length>0 &&
+        data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
+          <Grid key={i} item xs={12} style={{height:400}}>
+            <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection/>
+          </Grid>
+            )}
+      {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
+      <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} setRentUid={setRentUid} />
     </Border>
   )
 }

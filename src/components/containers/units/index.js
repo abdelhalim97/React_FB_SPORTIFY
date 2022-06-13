@@ -5,5 +5,7 @@ import {MapBox} from './map-box'
 import {MapBoxFlyTo} from './map-box-fly-to'
 import {IconButtonNormal} from './icon-button-nrml'
 import {Border} from './border'
+import {Pagination} from './pagination'
 
-export{LinkIconButton,TypographyIcon,IconButton,MapBox,MapBoxFlyTo,IconButtonNormal,Border}
+
+export{LinkIconButton,TypographyIcon,IconButton,MapBox,MapBoxFlyTo,IconButtonNormal,Border,Pagination}
