@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Container, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import img from '../assets/images/avatar.png'
 import { auth } from '../auth/firebase'

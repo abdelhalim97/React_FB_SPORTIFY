@@ -1,10 +1,10 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 export const IconButton = (props) => {
   return (
     <>
-        <Button variant='text' className={'rounded-md w-4/5'+props.styles} onClick={props.fnc} >
+        <Button variant='text' className={'w-4/5  lg:w-3/5 rounded-md  '+props.styles} onClick={props.fnc} >
           <FontAwesomeIcon icon={props.icon} className='mr-2'/>{props.title}
         </Button>
     </>

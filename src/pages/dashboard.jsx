@@ -1,10 +1,10 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
+import { Grid } from '@mui/material'
 import { LinkIconButton } from '../components/containers/units'
-import { faFutbol,faRightFromBracket,faEarthAfrica } from '@fortawesome/free-solid-svg-icons'
+import { faFutbol,faRightFromBracket,faEarthAfrica, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
-import { Home, Terrain, AllTerrains } from '../components';
+import { Home, Terrain, AllTerrains, Reservation } from '../components';
 import { signOut } from 'firebase/auth'
 import { auth } from '../auth/firebase'
 import { ErrorPage } from '.'
@@ -28,13 +28,19 @@ export const Dashboard = () => {
             link:'./terrain',
         },
         {
-            id:2,
+            id:3,
+            title:'Reservations',
+            icon:faDollarSign,
+            link:'./reservations',
+        },
+        {
+            id:4,
             title:'All Stadiums',
             icon:faEarthAfrica,
             link:'./all-stadiums',
         },
         {
-            id:3,
+            id:5,
             title:'Logout',
             icon:faRightFromBracket,
             link:'./',
@@ -52,12 +58,13 @@ export const Dashboard = () => {
             </Grid>
             <Grid item xs={9} sm={10} >
                 <Routes>
-                    <Route path="/" element={<Home/>}></Route>
+                    <Route path="/" element={<Home/>}/>
                     {/* auth.currentUser.emailVerified&& */}
-                    {<Route path="/terrain" element={<Terrain/>}></Route>}
+                    {<Route path="/terrain" element={<Terrain/>}/>}
+                    {<Route path="/reservations" element={<Reservation/>}/>}
                     {/* auth.currentUser.emailVerified&& */}
-                    {<Route path="/all-stadiums" element={<AllTerrains/>}></Route>}
-                    <Route path="*" element={<ErrorPage/>}></Route>
+                    {<Route path="/all-stadiums" element={<AllTerrains/>}/>}
+                    <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
             </Grid>
         </Grid>

@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@mui/material'
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth'
 import React from 'react'
 import { auth } from '../../auth/firebase'

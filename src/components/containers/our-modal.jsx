@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box,  Button,  Modal, TextField, Typography } from '@material-ui/core';
+import { Box,  Button,  Modal, TextField, Typography } from '@mui/material';
 import { MapBox, IconButton, TypographyIcon } from './units';
 import { faAdd, faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 import {db,auth} from '../../auth/firebase'
@@ -33,6 +33,7 @@ const [lat, setLat] = useState(35.83);
       name,
       lat,
       lng,
+      reservation:null,
       cost:parseFloat(cost)
     })
     setOpen(false)
@@ -84,7 +85,7 @@ const [lat, setLat] = useState(35.83);
             </div>
             )}
             <div className='flex justify-center'>
-              <IconButton title='add Stadium' icon={faAdd} fnc={()=>{addStadium(auth.currentUser.uid,lat,lng,form.name,form.cost)}} styles='text-third bg-base mt-3 rounded-2xl p-2'/>
+              <IconButton title='add Stadium' icon={faAdd} fnc={()=>{addStadium(auth.currentUser.uid,lat,lng,form.name,form.cost)}} styles='text-white bg-base mt-3 rounded-2xl p-2'/>
             </div>
           </div>
         </Box>

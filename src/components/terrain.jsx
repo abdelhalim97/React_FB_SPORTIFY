@@ -3,8 +3,8 @@ import { OurModal,DisplayTerrain } from './containers'
 import { db,auth } from '../auth/firebase'
 import { ref,onValue } from 'firebase/database'
 import ReactPaginate from 'react-paginate'
-import { Container, Grid } from '@material-ui/core'
-import { TypographyIcon } from './containers/units'
+import { Container, Grid } from '@mui/material'
+import { Border, TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 export const Terrain = () => {
     const [data, setData] = useState([])
@@ -30,8 +30,7 @@ export const Terrain = () => {
   const changePage=({selected})=>setPageNumber(selected)
   return (
     <>
-      <Container maxWidth='lg'  className='grid content-center h-full'>
-        <Grid container className=' border border-sec shadow-md mx-auto rounded-md pb-2'>
+      <Border>
           <Grid item xs={12} className='flex justify-end my-3 mr-2'>
             <OurModal/>
           </Grid>
@@ -49,8 +48,7 @@ export const Terrain = () => {
             activeLinkClassName={'bg-opacity-0 mx-0'}
             pageLinkClassName={'bg-sec text-third rounded-full px-2 pb-1 mx-1'}
             breakLabel="..."/>}
-        </Grid>
-      </Container>
+        </Border>
     </>
   )
 }
