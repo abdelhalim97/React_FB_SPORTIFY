@@ -33,7 +33,6 @@ const [lat, setLat] = useState(35.83);
       name,
       lat,
       lng,
-      reservation:null,
       cost:parseFloat(cost)
     })
     setOpen(false)

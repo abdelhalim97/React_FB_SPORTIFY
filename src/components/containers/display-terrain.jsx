@@ -1,23 +1,26 @@
 import { Box, Grid, TextField, Typography } from '@mui/material'
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { MapBoxFlyTo,IconButtonNormal, MapBox } from './units'
 import {faTrash,faPenToSquare, faCircleXmark, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
 import { ref, remove, set } from 'firebase/database'
 import { auth, db } from '../../auth/firebase'
+import MapChange from './units/map-change'
+
 export const DisplayTerrain = (props) => {
   const [lat, setLat] = useState(props.lat)
+  
   const [lng, setLng] = useState(props.lng)
   const [update, setupdate] = useState(false)
-  const [name, setName] = useState(props.name)
-  const [cost, setCost] = useState(props.cost)
+  const [name, setName] = useState(null)
+  const [cost, setCost] = useState(null)
   const updateStadium =()=>{
     const reff=ref(db,'stadiums'+'/'+props.uid)
     set(reff, 
-      {name,
-      cost:parseFloat(cost),
+      {name:name||props.name,
+      cost:parseFloat(cost)||parseFloat(props.cost),
       uid:props.uid,
-      lng:lng,
-      lat:lat,
+      lng:props.lng===lng?props.lng:lng,
+      lat:props.lat===lat?props.lat:lat,
       userEmail:auth.currentUser.email,
     }
     );
@@ -26,6 +29,7 @@ export const DisplayTerrain = (props) => {
     const redDB=ref(db,'stadiums'+'/'+props.uid)
     remove(redDB)
   }
+  console.log(lng)
   return (
     <>
       <Grid container className=' my-4' justifyContent="space-around" >
@@ -58,8 +62,9 @@ export const DisplayTerrain = (props) => {
                 <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
               </>:
               <>
-                <TextField variant='standard' label='name' value={name} onChange={(e)=>{setName(e.target.value)}} /><br/>
-                <TextField variant='standard' label='cost' value={cost} onChange={(e)=>{setCost(e.target.value)}} />
+              {/* <MapChange name={name} setName={setName} dName={dName} /> */}
+                <TextField variant='standard' label='name' defaultValue={props.name||name} onChange={(e)=>{setName(e.target.value)}} /><br/>
+                <TextField variant='standard' label='cost' defaultValue={props.name||cost} onChange={(e)=>{setCost(e.target.value)}} />
               </>}
             </div>
           </div>

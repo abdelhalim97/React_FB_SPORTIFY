@@ -1,16 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { OurModal,DisplayTerrain } from './containers'
 import { Grid } from '@mui/material'
 import { Border, TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
-import useFetchStadiums from '../custom-hooks/useFetchStadiums'
 import {Pagination} from './containers/units'
+import { ref,onValue } from 'firebase/database'
+import { auth, db } from '../auth/firebase'
+import ReactPaginate from 'react-paginate'
 
 export const Terrain = () => {
-  const data=useFetchStadiums()
+  const [data, setData] = useState([]);
+    useEffect(() => {
+        onValue(ref(db,'stadiums'),(snapshot)=>{
+          setData([])
+          const dataLocal = snapshot.val();
+          if(dataLocal!==null){
+            Object.values(dataLocal).map((d)=>{
+              if(d.userEmail===auth.currentUser.email){
+                setData((oldArray)=>[...oldArray,d]);
+              }
+              return 0
+            })
+          }
+        })
+    }, [])
   const [pageNumber, setPageNumber] = useState(0)
   const dataPerPage=1
   const pagesVisited=dataPerPage*pageNumber
+  const pageCount = Math.ceil(data.length/dataPerPage)
+  const changePage=({selected})=>setPageNumber(selected)
   return (
     <>
       <Border>
@@ -24,7 +42,14 @@ export const Terrain = () => {
             )}
             {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
           </Grid>
-          <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} />
+          {data.length!==0&&<ReactPaginate previousLabel={'<'} nextLabel={'>'} pageCount={pageCount} onPageChange={changePage}
+            containerClassName={'bg-gray-100 flex mx-auto rounded-full px-4 py-1  justify-center items-center'}
+            previousLinkClassName={'text-sec px-1'} nextLinkClassName={'text-sec px-1'}
+            activeClassName={'bg-base rounded-full py-1'}
+            activeLinkClassName={'bg-opacity-0 mx-0'}
+            pageLinkClassName={'bg-sec text-third rounded-full px-2 pb-1 mx-1'}
+            breakLabel="..."/>}
+          {/* <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} /> */}
         </Border>
     </>
   )
