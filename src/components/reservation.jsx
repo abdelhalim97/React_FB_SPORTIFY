@@ -65,12 +65,12 @@ export const Reservation = () => {
           onRowsPerPageChange={handleChangeRowsPerPage} ActionsComponent={TablePaginationActions}/>
           </div>
         </Paper>)}
-              {dataReservations.length===0&&
+              {(dataReservations.length===0 && data.length>0)&&
               <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3 w-full' icon={faTriangleExclamation} text='There s no reservation yet'/>}
-        {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
         <div className='mx-auto'>
           <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} setRentUid={setRentUid} />
         </div>
+        {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3 mx-auto' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
       </Border>
     </>
   )

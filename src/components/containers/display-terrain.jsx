@@ -18,7 +18,7 @@ export const DisplayTerrain = (props) => {
       uid:props.uid,
       lng:lng,
       lat:lat,
-      userId:auth.currentUser.uid,
+      userEmail:auth.currentUser.email,
     }
     );
   }

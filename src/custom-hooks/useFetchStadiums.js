@@ -10,7 +10,7 @@ const useFetchStadiums = ()=>{
           const dataLocal = snapshot.val();
           if(dataLocal!==null){
             Object.values(dataLocal).map((d)=>{
-              if(d.userId===auth.currentUser.uid){
+              if(d.userEmail===auth.currentUser.email){
                 setData((oldArray)=>[...oldArray,d]);
               }
               return 0

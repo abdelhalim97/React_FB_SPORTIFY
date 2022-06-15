@@ -29,7 +29,7 @@ const [lat, setLat] = useState(35.83);
     const newStadiumKey=newStadiumRef.key
     set(newStadiumRef,{
       uid:newStadiumKey,
-      userId,
+      userEmail:auth.currentUser.email,
       name,
       lat,
       lng,
