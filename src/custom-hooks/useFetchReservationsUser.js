@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ref,onValue } from 'firebase/database'
 import { db } from "../auth/firebase";
 
-const useFetchReservations = (terrain)=>{
+const useFetchReservationsUser = (terrain)=>{
     const [rentData, setRentData] = useState([]);
     useEffect(() => {
         if(terrain){
@@ -11,14 +11,14 @@ const useFetchReservations = (terrain)=>{
             const dataLocalRent = snapshot.val();
             if(dataLocalRent!==null){
               Object.values(dataLocalRent).map((d)=>{
-                if(d.stadiumUid===terrain)
+                if(d.stadiumUid.includes(terrain))
                 setRentData((oldArray)=>[...oldArray,d]);
                 return 0
               })
             }
           })  
         }
-      }, [terrain])
+      }, [])
     return rentData
 }
-export default useFetchReservations
+export default useFetchReservationsUser

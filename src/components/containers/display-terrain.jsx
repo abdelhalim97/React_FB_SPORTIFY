@@ -4,11 +4,9 @@ import { MapBoxFlyTo,IconButtonNormal, MapBox } from './units'
 import {faTrash,faPenToSquare, faCircleXmark, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
 import { ref, remove, set } from 'firebase/database'
 import { auth, db } from '../../auth/firebase'
-import MapChange from './units/map-change'
 
 export const DisplayTerrain = (props) => {
   const [lat, setLat] = useState(props.lat)
-  
   const [lng, setLng] = useState(props.lng)
   const [update, setupdate] = useState(false)
   const [name, setName] = useState(null)
@@ -29,7 +27,6 @@ export const DisplayTerrain = (props) => {
     const redDB=ref(db,'stadiums'+'/'+props.uid)
     remove(redDB)
   }
-  console.log(lng)
   return (
     <>
       <Grid container className=' my-4' justifyContent="space-around" >
@@ -62,9 +59,8 @@ export const DisplayTerrain = (props) => {
                 <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
               </>:
               <>
-              {/* <MapChange name={name} setName={setName} dName={dName} /> */}
                 <TextField variant='standard' label='name' defaultValue={props.name||name} onChange={(e)=>{setName(e.target.value)}} /><br/>
-                <TextField variant='standard' label='cost' defaultValue={props.name||cost} onChange={(e)=>{setCost(e.target.value)}} />
+                <TextField variant='standard' label='cost' defaultValue={props.cost||cost} onChange={(e)=>{setCost(e.target.value)}} />
               </>}
             </div>
           </div>
