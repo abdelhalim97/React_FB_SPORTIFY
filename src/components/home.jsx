@@ -23,11 +23,11 @@ export const Home = () => {
      } */}
      <Container maxWidth='lg' className='py-5'>
      <Grid container>
-       <Grid item sm={12} md={3}>
+       <Grid item sm={12} md={3} className='mx-auto'>
          <img src={img} className='rounded-full bg-third mx-auto h-16 w-16' alt='avatar'/>
          <Typography variant='h6' className='text-third text-center'>{user.displayName? user.displayName:user.email}</Typography>
        </Grid>  
-       <Grid item container spacing={3} sm={12} sm={12} md={9}>
+       <Grid item container spacing={3} sm={12} md={9}>
         <Cards/>
        </Grid>
       </Grid>

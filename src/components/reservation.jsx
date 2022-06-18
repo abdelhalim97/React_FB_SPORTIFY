@@ -40,7 +40,7 @@ export const Reservation = () => {
                   <TableCell align="left">Reservation from</TableCell>
                   <TableCell align="left">Reservation to</TableCell>
                   <TableCell align="left">Duration</TableCell>
-                  <TableCell align="left">reserverID</TableCell>
+                  <TableCell align="left">reserver Email</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -53,7 +53,8 @@ export const Reservation = () => {
                     <TableCell align="left">
                       {Math.floor((parseInt(row.toHours*60)+parseInt(row.toMinutes)-(parseInt(row.fromHours*60)+parseInt(row.fromMinutes)))/60)}:
                       {Math.floor((parseInt(row.toHours*60)+parseInt(row.toMinutes)-(parseInt(row.fromHours*60)+parseInt(row.fromMinutes)))%60)}
-                      </TableCell>
+                    </TableCell>
+                    <TableCell align="left">{row.reserverEmail}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

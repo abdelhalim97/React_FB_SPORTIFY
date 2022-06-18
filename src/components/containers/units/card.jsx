@@ -6,8 +6,9 @@ export const Card = (props) => {
     <Paper elevation={3} className='mt-4 sm:mt-8'>
         <Container maxWidth='lg'>
             <Grid container alignItems="center" className='py-3 '>
-                <div className='w-full flex justify-center'>
-                    <img src={props.icon} alt='stadium' width='64' height='64' className={`${props.id===0&&'top-5'} ${props.id===1&&'top-3'} ${props.id===2&&'top-4'} absolute `}/>
+                <div className='w-full flex justify-center relative'>
+                    <img src={props.icon} alt='stadium' width='64' height='64'
+                    className='absolute'  style={{top:'-50px'}}/>
 
                 </div>
                 {/* <img src={props.icon} alt='stadium' width='64' height='64' className={`${props.id===1?'bottom-14':'bottom-12'} absolute right-10 xl:right-32 lg:right-24 md:right-18 sm:right-14`}/> */}

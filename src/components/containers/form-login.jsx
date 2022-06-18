@@ -38,7 +38,7 @@ export const FormLogin = ({setForm,formDataLogIn,setFormDataLogIn}) => {
       id:1,
       title:"Forgot Password?",
       fnc:handleSetFormtoForgotPasword,
-      styles:'my-3 text-base text-xs',
+      styles:'my-1 text-base text-xs',
       variant:'text'
     },
   ]
