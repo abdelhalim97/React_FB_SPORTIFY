@@ -1,4 +1,4 @@
-import { Box, Grid, TextField, Typography } from '@mui/material'
+import { Box, Container, Grid, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { MapBoxFlyTo,IconButtonNormal, MapBox } from './units'
 import {faTrash,faPenToSquare, faCircleXmark, faCircleCheck} from '@fortawesome/free-solid-svg-icons'
@@ -40,9 +40,8 @@ export const DisplayTerrain = (props) => {
             <Box mt={9}></Box>
           </Grid>
         </Grid>
-        <Grid sm={9} md={4} item className='bg-gray-100 rounded-md relative'>
-          <div className='absolute w-full'>
-            <div className='flex justify-end'>
+        <Grid sm={9} md={4} item className='bg-gray-100 rounded-md mt-2' style={{display:'grid',gridTemplateRows:'1fr 5fr'}}>
+            <div className='flex justify-end w-full'>
               {!update?<IconButtonNormal icon={faPenToSquare} fnc={()=>{setupdate(true)}} styles='text-green-500' title=''/>
               :<>
                 <IconButtonNormal icon={faCircleXmark} fnc={()=>{setupdate(false)}} styles='text-red-500' title=''/>
@@ -50,20 +49,18 @@ export const DisplayTerrain = (props) => {
               </>}
               <IconButtonNormal icon={faTrash} fnc={()=>{deleteStadium()}} styles='text-red-500' title=''/>
             </div>
-          </div>
-          <div className='flex items-center h-full'>
-            <div className='mx-auto'>
+            <Grid container alignItems='center'>
               {!update?
-              <>
-                <Typography variant='subtitle1' className='text-center'>Stadium name: <span className='text-base font-bold'>{props.name}</span></Typography>
-                <Typography variant='subtitle1' className='text-center'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
-              </>:
-              <>
+              <Container maxWidth='xl' className='mx-auto'>
+                <Typography variant='subtitle1' className='text-center w-full'>Stadium name: <span className='text-base font-bold'>{props.name}</span></Typography>
+                <Typography variant='subtitle1' className='text-center w-full'>cost: <span className='text-base font-bold'>{props.cost}</span></Typography>
+              </Container>
+              :<Container maxWidth='xl' className='mx-auto'>
                 <TextField variant='standard' label='name' defaultValue={props.name||name} onChange={(e)=>{setName(e.target.value)}} /><br/>
                 <TextField variant='standard' label='cost' defaultValue={props.cost||cost} onChange={(e)=>{setCost(e.target.value)}} />
-              </>}
-            </div>
-          </div>
+              </Container>
+              }
+            </Grid>
         </Grid>
       </Grid>
     </>

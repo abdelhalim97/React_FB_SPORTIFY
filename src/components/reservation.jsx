@@ -27,10 +27,10 @@ export const Reservation = () => {
   };
   return (
     <>
-      <Border>
+      <Border >
       <Typography align='center' variant='h5' className='font-bold text-base text-4xl tex-center w-full py-1'>{data&&data.map(d=>d.uid===rentUid&&d.name)}</Typography>
         {data.length>0 && data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
-        <Paper className='w-full mb-3' key={i}>
+        <Paper className='w-full mb-3 ' key={i}>
           <TableContainer component={Paper} className='mb-3'>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>

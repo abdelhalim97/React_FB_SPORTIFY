@@ -4,7 +4,7 @@ import useFetchStadiums from '../../custom-hooks/useFetchStadiums'
 import useFetchReservationsUser from '../../custom-hooks/useFetchReservationsUser'
 import { Card } from './units'
 import iconStadium from '../../assets/images/stadium.png'
-import iconReservation from '../../assets/images/reservation2.png'
+import iconReservation from '../../assets/images/reservation.png'
 import iconMoney from '../../assets/images/money.png'
 
 export const Cards = () => {
@@ -14,6 +14,7 @@ export const Cards = () => {
     const reservationCost =reservationUserData.reduce((accumulator,currentElement,index)=>parseFloat(accumulator)+((
         (parseInt(currentElement.toHours)*60+parseInt(currentElement.toMinutes))-(parseInt(currentElement.fromHours)*60+parseInt(currentElement.fromMinutes))
     )/60)*parseInt(currentElement.cost),'0')
+    const reservationRound= parseFloat(reservationCost).toFixed(2)
     const cardsData = [
         {
         id:0,
@@ -29,7 +30,7 @@ export const Cards = () => {
     },
     {
         id:2,
-        dataLength:reservationCost,
+        dataLength:reservationRound,
         desc:'Earned',
         icon:iconMoney
     },

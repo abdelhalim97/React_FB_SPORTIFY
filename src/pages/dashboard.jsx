@@ -50,7 +50,7 @@ export const Dashboard = () => {
   return (
     <>
         <Grid container>
-            <Grid item xs={3} sm={2}  className='bg-sec relative' style={{ height:'94vh' }}>
+            <Grid item xs={3} sm={2}  className='bg-sec relative min-h-screen'>
                 <div className='text-third text-center text-sm sm:text-xl font-bold'>SPORTIFY</div>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
