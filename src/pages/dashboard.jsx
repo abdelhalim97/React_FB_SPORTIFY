@@ -13,7 +13,6 @@ export const Dashboard = () => {
     const handleLogout=async()=>{
         await signOut(auth)
     }
-    // TODO: add route displaying all elements 
     const buttonsData=[
         {
             id:0,
@@ -49,8 +48,8 @@ export const Dashboard = () => {
     ]
   return (
     <>
-        <Grid container>
-            <Grid item xs={3} sm={2}  className='bg-sec relative min-h-screen'>
+        <Grid container className=' '>
+            <Grid item xs={6} sm={2} md={2} className='bg-sec relative min-h-screen'>
                 <div className='text-third text-center text-sm sm:text-xl font-bold'>SPORTIFY</div>
                 {buttonsData.map(data=>
                     <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />

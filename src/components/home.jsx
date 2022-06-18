@@ -5,7 +5,7 @@ import { auth } from '../auth/firebase'
 import { TypographyIcon } from './containers/units'
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { onAuthStateChanged } from 'firebase/auth'
-import { Cards } from './containers'
+import { Cards, Charts } from './containers'
 
 export const Home = () => {
   const [initializing, setInitializing] = useState(true);
@@ -17,7 +17,7 @@ export const Home = () => {
   return (
     <>
      {initializing?  null:
-     <div className='bg-base h-2/5'>
+     <div className='bg-base '>
      {/* {!user.emailVerified&&
        <TypographyIcon styles='text-red-800 text-center' icon={faTriangleExclamation} variant='h6' text={`please verify your email ${user.email}`}/>
      } */}
@@ -29,6 +29,9 @@ export const Home = () => {
        </Grid>  
        <Grid item container spacing={3} sm={12} md={9}>
         <Cards/>
+       </Grid>
+       <Grid item xs={12}>
+        <Charts/>
        </Grid>
       </Grid>
      </Container>
