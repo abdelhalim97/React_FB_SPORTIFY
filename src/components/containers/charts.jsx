@@ -60,7 +60,6 @@ export const Charts = () => {
         const dataNew = []
         dataBef.map(d=>dataNew.push(d.data))
         const label = stadiums.map(stade=>stade.name)
-        console.log(label)
       const data={
         labels,
         datasets:

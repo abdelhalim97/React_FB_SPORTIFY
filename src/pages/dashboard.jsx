@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid } from '@mui/material'
 import { LinkIconButton } from '../components/containers/units'
-import { faFutbol,faRightFromBracket,faEarthAfrica, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faFutbol,faRightFromBracket,faEarthAfrica, faDollarSign, faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import {faIdBadge} from '@fortawesome/free-regular-svg-icons'
 import { Routes,Route } from "react-router-dom";
 import { Home, Terrain, AllTerrains, Reservation } from '../components';
 import { signOut } from 'firebase/auth'
 import { auth } from '../auth/firebase'
 import { ErrorPage } from '.'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Dashboard = () => {
+    const [dashBoardDisplay, setDashBoardDisplay] = useState(true)
     const handleLogout=async()=>{
         await signOut(auth)
     }
@@ -48,14 +50,16 @@ export const Dashboard = () => {
     ]
   return (
     <>
-        <Grid container className=' '>
-            <Grid item xs={6} sm={2} md={2} className='bg-sec relative min-h-screen'>
-                <div className='text-third text-center text-sm sm:text-xl font-bold'>SPORTIFY</div>
+        <div container className='relative md:static flex'>
+            <div className={`${dashBoardDisplay?'w-4/7 sm:w-1/4':'w-1/12 sm:w-1/12'} bg-sec min-h-screen md:w-1/5 lg:w-1/5   absolute md:static z-50`}>
+                <div className={`${dashBoardDisplay?'opacity-100':'sm:opacity-0 opacity-0'} md:opacity-100 text-white text-center text-sm sm:text-xl font-bold`}>SPORTIFY</div>
                 {buttonsData.map(data=>
-                    <LinkIconButton key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
+                    <LinkIconButton dashBoardDisplay={dashBoardDisplay} key={data.id} link={data.link} icon={data.icon} title={data.title} fnc={data.fnc} />
                 )}
-            </Grid>
-            <Grid item xs={9} sm={10} >
+                <FontAwesomeIcon icon={dashBoardDisplay?faArrowAltCircleLeft:faArrowAltCircleRight} onClick={()=>setDashBoardDisplay(!dashBoardDisplay)} 
+                    className='md:hidden absolute right-0 cursor-pointer text-third hover:text-black active:text-third z-50'/>
+            </div>
+            <div className='w-full md:w-4/5 lg:w-4/5'>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     {/* auth.currentUser.emailVerified&& */}
@@ -65,8 +69,8 @@ export const Dashboard = () => {
                     {<Route path="/all-stadiums" element={<AllTerrains/>}/>}
                     <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
-            </Grid>
-        </Grid>
+            </div>
+        </div>
     </>
   )
 }
