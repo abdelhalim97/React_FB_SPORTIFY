@@ -23,8 +23,6 @@ export const MapBox = ({lng,setLng,lat,setLat,initialZ}) => {
       });
       });
   return (
-    <>
         <div ref={mapContainer} className="map-container h-64" />
-    </>
   )
 }

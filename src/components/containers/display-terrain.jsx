@@ -28,7 +28,6 @@ export const DisplayTerrain = (props) => {
     remove(redDB)
   }
   return (
-    <>
       <Grid container className=' my-4' justifyContent="space-around" >
         <Grid sm={9} md={7} item container justifyContent="center">
           <Grid item xs={11}>
@@ -63,6 +62,5 @@ export const DisplayTerrain = (props) => {
             </Grid>
         </Grid>
       </Grid>
-    </>
   )
 }

@@ -1,4 +1,4 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Border,Pagination,TypographyIcon } from './containers/units'
 import useFetchStadiums from '../custom-hooks/useFetchStadiums';
@@ -26,10 +26,9 @@ export const Reservation = () => {
     setPage(newPage);
   };
   return (
-    <>
       <Border >
       <Typography align='center' variant='h5' className='font-bold text-base text-4xl tex-center w-full py-1'>{data&&data.map(d=>d.uid===rentUid&&d.name)}</Typography>
-        {data.length>0 && data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
+        {data.length>0 ? data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
         <Paper className='w-full mb-3 ' key={i}>
           <TableContainer component={Paper} className='mb-3'>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -65,7 +64,7 @@ export const Reservation = () => {
           page={page} SelectProps={{inputProps: {'aria-label': 'rows per page',},native: true,}} onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage} ActionsComponent={TablePaginationActions}/>
           </div>
-        </Paper>)}
+        </Paper>):<div className='w-full flex justify-center'><CircularProgress/></div>}
               {(dataReservations.length===0 && data.length>0)&&
               <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3 w-full' icon={faTriangleExclamation} text='There s no reservation yet'/>}
         <div className='mx-auto'>
@@ -73,6 +72,5 @@ export const Reservation = () => {
         </div>
         {data.length===0 && <TypographyIcon variant='body1' styles='text-red-600 text-center mb-3 mx-auto' icon={faTriangleExclamation} text='you dont have any Stadiums yet'/>}
       </Border>
-    </>
   )
 }

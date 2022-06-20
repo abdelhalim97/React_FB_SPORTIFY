@@ -1,14 +1,8 @@
 import React from 'react'
-import { auth } from '../auth/firebase'
-import { TypographyIcon } from '../components/containers/units'
-
+import img404 from '../assets/images/404.jpg'
 export const ErrorPage = () => {
   return (
-    <>
-      <div style={{ height:'41vh' }}>
-      {!auth?.currentUser?.emailVerified &&auth?.currentUser?.emailVerified!==undefined &&<TypographyIcon text={`${auth?.currentUser?.displayName} please verify your email`}/>}
-        404</div>
-    </>
+    <img src={img404} alt='404'  />
   )
 }
 

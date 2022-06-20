@@ -27,7 +27,6 @@ export const Terrain = () => {
   const dataPerPage=1
   const pagesVisited=dataPerPage*pageNumber
   return (
-    <>
       <Border>
           <Grid item xs={12} className='flex justify-end my-3 mr-2'>
             <OurModal/>
@@ -41,6 +40,5 @@ export const Terrain = () => {
           </Grid>
           <Pagination data={data} setPageNumber={setPageNumber} dataPerPage={dataPerPage} />
         </Border>
-    </>
   )
 }

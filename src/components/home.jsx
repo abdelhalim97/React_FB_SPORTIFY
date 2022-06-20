@@ -2,8 +2,6 @@ import { Container, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import img from '../assets/images/avatar.png'
 import { auth } from '../auth/firebase'
-import { TypographyIcon } from './containers/units'
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Cards, Charts } from './containers'
 

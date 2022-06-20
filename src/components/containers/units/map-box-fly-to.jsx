@@ -21,8 +21,6 @@ export const MapBoxFlyTo = ({lng,lat,initialZ}) => {
     }
     },[lng,lat,initialZ]);
   return (
-    <>
         <div ref={mapContainer} className="map-container h-64"/>
-    </>
   )
 }

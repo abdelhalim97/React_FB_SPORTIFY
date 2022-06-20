@@ -22,8 +22,7 @@ export const Form = () => {
     },
   ]
   return (
-      <>
-        <div className='border-2 border-sec w-4/6  md:w-1/2 absolute top-1/2 rounded-3xl bg-third shadow-lg'>
+        <div className='border-2 border-sec w-4/6 sm:w-1/2  md:w-1/2 absolute top-1/2 rounded-3xl bg-third shadow-lg'>
           <Container maxWidth='xs'>
             <div className='flex justify-around my-3'>
               {dataButtons.map(data=>
@@ -43,6 +42,5 @@ export const Form = () => {
             }
           </Container>
         </div>
-      </>
   )
 }
