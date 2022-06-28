@@ -60,9 +60,13 @@ export const Dashboard = () => {
             <div className='w-full md:w-4/5 lg:w-4/5' >
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/terrain" element={<Terrain/>}/>
-                    <Route path="/reservations" element={<Reservation/>}/>
-                    <Route path="/all-stadiums" element={<AllTerrains/>}/>
+                    {auth.currentUser.emailVerified&&
+                    <>
+                        <Route path="/terrain" element={<Terrain/>}/>
+                        <Route path="/reservations" element={<Reservation/>}/>
+                        <Route path="/all-stadiums" element={<AllTerrains/>}/>
+                    </>
+                    }
                     <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
             </div>

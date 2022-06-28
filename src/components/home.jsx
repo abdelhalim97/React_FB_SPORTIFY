@@ -4,6 +4,8 @@ import img from '../assets/images/avatar.png'
 import { auth } from '../auth/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { Cards, Charts } from './containers'
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { TypographyIcon } from './containers/units'
 
 export const Home = () => {
   const [initializing, setInitializing] = useState(true);
@@ -16,9 +18,9 @@ export const Home = () => {
     <>
      {initializing?  null:
      <div className='bg-base '>
-     {/* {!user.emailVerified&&
+     {!user.emailVerified&&
        <TypographyIcon styles='text-red-800 text-center' icon={faTriangleExclamation} variant='h6' text={`please verify your email ${user.email}`}/>
-     } */}
+     }
      <Container maxWidth='lg' className='py-5'>
      <Grid container>
        <Grid item sm={12} md={3} className='mx-auto'>

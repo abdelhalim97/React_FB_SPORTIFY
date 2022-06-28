@@ -5,7 +5,7 @@ import { db } from "../auth/firebase";
 const useFetchReservationsUser = (terrain)=>{
     const [rentData, setRentData] = useState([]);
     useEffect(() => {
-        if(terrain){
+        if(terrain.length>0){
           onValue(ref(db,'reservation'),(snapshot)=>{
             setRentData([])
             const dataLocalRent = snapshot.val();

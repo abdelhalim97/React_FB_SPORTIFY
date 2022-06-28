@@ -11,6 +11,7 @@ export const Cards = () => {
     const stadiumsData = useFetchStadiums()
     const stadiumsUserArrya=stadiumsData.map(d=>d.uid)
     const reservationUserData = useFetchReservationsUser(stadiumsUserArrya)
+    // console.log(reservationUserData)
     const reservationCost =reservationUserData.reduce((accumulator,currentElement,index)=>parseFloat(accumulator)+((
         (parseInt(currentElement.toHours)*60+parseInt(currentElement.toMinutes))-(parseInt(currentElement.fromHours)*60+parseInt(currentElement.fromMinutes))
     )/60)*parseInt(currentElement.cost),'0')
