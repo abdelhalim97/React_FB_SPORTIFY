@@ -22,7 +22,7 @@ onAuthStateChanged(auth,user=>{
       <Routes>
           {!first &&<Route path="/" element={<Login/>}/>}
           {!first &&<Route path="*" element={<ErrorPage/>}/>}
-        </Routes>
+      </Routes>
         <Footer/>
       </div>
       </BrowserRouter>

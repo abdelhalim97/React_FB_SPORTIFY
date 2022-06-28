@@ -7,6 +7,7 @@ import useFetchReservations from '../custom-hooks/useFetchReservations';
 import { TablePaginationActions } from './containers';
 
 export const Reservation = () => {
+  const [loading, setLoading] = useState(true)
   const data = useFetchStadiums()
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0)
@@ -15,7 +16,7 @@ export const Reservation = () => {
   const dataPerPage=1
   const pagesVisited=dataPerPage*pageNumber
   useEffect(() => {
-    data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d)=>setRentUid(d.uid))
+    data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d)=>{setRentUid(d.uid); return setLoading(false)})
   }, [data,pageNumber])
   const dataReservations = useFetchReservations(rentUid)
   const handleChangeRowsPerPage = (event) => {
@@ -28,7 +29,7 @@ export const Reservation = () => {
   return (
       <Border >
       <Typography align='center' variant='h5' className='font-bold text-base text-4xl tex-center w-full py-1'>{data&&data.map(d=>d.uid===rentUid&&d.name)}</Typography>
-        {data.length>0 ? data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
+        {!loading ? data?.slice(pagesVisited,pagesVisited+dataPerPage).map((d,i)=>
         <Paper className='w-full mb-3 ' key={i}>
           <TableContainer component={Paper} className='mb-3'>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

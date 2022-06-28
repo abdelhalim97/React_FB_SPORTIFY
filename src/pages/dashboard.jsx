@@ -57,7 +57,7 @@ export const Dashboard = () => {
                 <FontAwesomeIcon icon={dashBoardDisplay?faArrowAltCircleLeft:faArrowAltCircleRight} onClick={()=>setDashBoardDisplay(!dashBoardDisplay)} 
                     className='md:hidden absolute right-0 cursor-pointer text-third hover:text-black active:text-third z-40'/>
             </div>
-            <div className='w-full md:w-4/5 lg:w-4/5' >
+            <div className='w-full md:w-4/5 lg:w-4/5' style={{minHeight:'100vh'}}>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     {auth.currentUser.emailVerified&&
